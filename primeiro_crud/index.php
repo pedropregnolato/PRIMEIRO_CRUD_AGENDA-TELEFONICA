@@ -7,19 +7,19 @@
     <title>Agenda Telefonica</title>
 
     <?php
-        $parametro = filter_input(INPUT_GET, "parametro");
+        $parametro = filter_input(INPUT_GET, "parametro"); //definindo variaveis e usando metodo INPUT_GET e nao POST
         $mysqli = mysqli_connect("localhost","root","");
-        mysqli_select_db($mysqli,"agenda_telefonica");
+        mysqli_select_db($mysqli,"agenda_telefonica"); //conexao com o banco
 
-        if($parametro){
+        if($parametro){ //se tiver parametro (dado no pesquisar) seleciona ele, caso contrario consulta o banco todo
             $dados = mysqli_query($mysqli, "select * from contato where nome like '$parametro%' order by id");
         }else{
             $dados = mysqli_query($mysqli, "select * from contato order by id");
         }
 
+        //modo de exibição na tela - declara a linha como uma matriz associativa e conta o numero de linhas pra passar automaticamente pro html
         $linha = mysqli_fetch_assoc($dados);
         $total = mysqli_num_rows($dados);
-
 
     ?>
 
@@ -31,7 +31,7 @@
         </h1>
 
         <p>
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>">
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>"> 
 
                 <!-- SELECT -->
                 <div>
@@ -41,6 +41,7 @@
                 </div>
 
                 <br>
+
                 <!-- INSERT -->
                 <a href="paginanovocontato.php"><img src="imagens/add.png" alt="adicionar_pessoa" height="21px" style="margin-top:10px; margin-left:6em"><br></a>
               
@@ -64,7 +65,9 @@
                             <td><?php echo $linha['id'] ?></td>
                             <td><?php echo $linha['nome'] ?></td>
                             <td><?php echo $linha['telefone'] ?></td>
+                            <!-- UPDATE -->
                             <td><a href="<?php echo "paginaalterar.php?id=" . $linha['id'] . "&nome=" . $linha['nome'] . "&telefone=" . $linha['telefone'] ?>"><img src="imagens/editar.png" alt="editar" width="18px"></a></td>
+                            <!-- DELETE -->
                             <td><a href="<?php echo "excluir.php?id=" . $linha['id'] ?>"><img src="imagens/lixeira.png" alt="lixeira" width="18px"></a></td>
                         </tr>
 

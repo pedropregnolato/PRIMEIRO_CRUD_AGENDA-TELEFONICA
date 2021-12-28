@@ -6,8 +6,8 @@
 
 
 
-    if(!empty($nome) && !empty($telefone)){
-        if($link) {
+    if(!empty($nome) && !empty($telefone)){ //assim se tirar o required do html ainda será seguro nao inserindo o dado no banco
+        if($link) { 
             $query = mysqli_query($link, "insert into contato values ('', '$nome', '$telefone')");
             if($query){
                 header("Location: index.php");
