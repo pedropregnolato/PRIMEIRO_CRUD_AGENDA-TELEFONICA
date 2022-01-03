@@ -41,7 +41,8 @@
                 </div>
 
                 <br>
-
+                <a href="upload.php" style="margin-left:1em">Inserir imagem no banco</a>
+                <br>
                 <!-- INSERT -->
                 <a href="paginanovocontato.php"><img src="imagens/add.png" alt="adicionar_pessoa" height="21px" style="margin-top:10px; margin-left:6em"><br></a>
               

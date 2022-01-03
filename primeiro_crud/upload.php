@@ -1,33 +1,42 @@
 <?php
-    $mysqli = mysqli_connect("localhost","root","");
-    mysqli_select_db($mysqli,"arquivo"); //conexao com o banco
+session_start();
+?>
 
-    $mensagem = false;
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload de imagem</title>
+</head>
+<body>
+    <h1>
+        Cadastrar imagem
+    </h1>
 
-    if(isset($_FILES['arquivo'])){
-        $extensao = strtolower(substr($_FILES['arquivo']['name'], -4)); //extensao do arquivo - conta o ponto + 3 caracteres; .png por exemplo
-        $novo_nome = md5(time()) ; $extensao; //define o nome do arquivo
-        $diretorio = "upload/"; //diretorio para onde vao os arquivos
-
-        move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio . $novo_nome);
-
-        $sql = "INSERT INTO arquivo (codigo, arquivo, data) VALUES (null, $novo_nome, NOW())";
-        if($mysqli_query->query($mysqli, $sql)){
-            $mensagem = "Imagem salva!";
-        } else {
-            $mensagem = "Ocorreu um erro!";
+    <?php
+        if(isset($_SESSION['msg'])){
+            echo $_SESSION['msg'];
+            unset($_SESSION['msg']);
         }
+    ?>
 
-    }
-?>
+    <form method="POST" action="proc_cad_img.php" enctype="multipart/form-data">
 
-<h1>Subir imagem pro banco</h1>
+        <label>
+            Nome:
+        </label>
+        <input type="text" name="nome" placeholder="Digitar o nome"><br><br>
 
-<?php 
-    if($mensagem != false) echo "<p> $mensagem </p>";
-?>
+        <label>
+            Imagem
+        </label>
+        <input type="file" name="imagem"><br><br>
 
-<form action="upload.php" method="post" enctype="multipart/form-data"> <!-- enctype serve pra declarar que estará enviando um arquivo para o banco -->
-    <input type="file" name="arquivo">
-    <input type="submit" value="Enviar">
-</form> 
+        <input type="submit" name="SendCadImg" value="Cadastrar">
+
+    </form>
+
+</body>
+</html>
