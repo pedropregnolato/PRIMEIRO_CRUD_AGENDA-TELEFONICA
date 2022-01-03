@@ -12,7 +12,7 @@
     $nome = filter_input(INPUT_GET, "nome");
     $telefone = filter_input(INPUT_GET, "telefone");
 
-    if(!empty($nome) && !empty($telefone)){
+    if (!empty($nome) && !empty($telefone)) {
 
     ?>
 </head>
@@ -35,10 +35,10 @@
 
 </html>
 
-<?php 
+<?php
 
-}else {
-    echo("Por favor insira nome e telefone.");
-    die();
-}
+    } else {
+        echo ("Por favor insira nome e telefone.");
+        die();
+    }
 ?>
