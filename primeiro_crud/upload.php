@@ -14,7 +14,7 @@ session_start();
 
 <body>
     <h1>
-        Cadastrar imagem
+    Upload de imagem
     </h1>
 
     <?php
@@ -29,16 +29,18 @@ session_start();
         <label>
             Nome:
         </label>
-        <input type="text" name="nome" placeholder="Digitar o nome" required><br><br>
+        <input type="text" name="nome" placeholder="Nome da imagem no BD" required><br><br>
 
         <label>
             Imagem
         </label>
         <input type="file" name="imagem" required><br><br>
 
-        <input type="submit" name="SendCadImg" value="Cadastrar">
+        <input type="submit" name="SendCadImg" value="Inserir">
 
     </form>
+    <br>
+    <a href="index.php"> Voltar </a>
 
 </body>
 

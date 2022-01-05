@@ -21,6 +21,8 @@
         </form>
         </p>
     </div>
+    <br>
+    <a href="index.php"> Voltar</a>
 </body>
 
 </html>
