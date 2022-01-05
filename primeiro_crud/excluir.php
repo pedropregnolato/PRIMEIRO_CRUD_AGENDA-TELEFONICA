@@ -13,6 +13,6 @@
                     die("Erro: ". mysqli_error($link));
                 }
         }else{
-            die("Erro: ". mysqli_error($link));
+            die();
         }
 ?>
