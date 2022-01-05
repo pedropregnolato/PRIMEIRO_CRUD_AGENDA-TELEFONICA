@@ -15,6 +15,8 @@ if ($SendCadImg) {
     $insert_msg->bindParam(':nome', $nome);
     $insert_msg->bindParam(':imagem', $nome_imagem);
 
+    if(!empty($nome) && !empty($nome_imagem)){
+
     if ($insert_msg->execute()) {
 
         //recuperar ultimo ID no BD
@@ -44,4 +46,5 @@ if ($SendCadImg) {
 } else {
     $_SESSION['msg'] = "<p>Erro ao salvar os dados!</p>";
     header("Location: upload.php");
+}
 }

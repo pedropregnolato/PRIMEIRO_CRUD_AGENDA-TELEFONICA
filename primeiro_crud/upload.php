@@ -29,12 +29,12 @@ session_start();
         <label>
             Nome:
         </label>
-        <input type="text" name="nome" placeholder="Digitar o nome"><br><br>
+        <input type="text" name="nome" placeholder="Digitar o nome" required><br><br>
 
         <label>
             Imagem
         </label>
-        <input type="file" name="imagem"><br><br>
+        <input type="file" name="imagem" required><br><br>
 
         <input type="submit" name="SendCadImg" value="Cadastrar">
 
