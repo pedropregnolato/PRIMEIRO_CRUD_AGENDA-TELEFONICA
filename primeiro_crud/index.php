@@ -66,8 +66,18 @@
 
                     <tr>
                         <td><?php echo $linha['id'] ?></td>
-                        <td><?php echo $linha['nome'] ?></td>
-                        <td><?php echo $linha['telefone'] ?></td>
+
+                        <td>
+                            <?php 
+                                echo ucwords(strtolower($linha['nome'])) 
+                            ?>
+                        </td>
+
+                        <td>
+                            <?php 
+                                echo preg_replace("/([0-9]{2})([0-9]{5})([0-9]{4})/", "($1)$2-$3", $linha['telefone']) 
+                            ?>
+                        </td>
                         <!-- UPDATE -->
                         <td><a href="<?php echo "paginaalterar.php?id=" . $linha['id'] . "&nome=" . $linha['nome'] . "&telefone=" . $linha['telefone'] ?>"><img src="imagens/editar.png" alt="editar" width="18px"></a></td>
                         <!-- DELETE -->
