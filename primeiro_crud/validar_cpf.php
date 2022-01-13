@@ -1,10 +1,11 @@
 <?php
 
-function validaCPF($documento) {
- 
+function validaCPF($documento)
+{
+
     // Extrai somente os números
-    $documento = preg_replace( '/[^0-9]/is', '', $documento );
-     
+    $documento = preg_replace('/[^0-9]/is', '', $documento);
+
     // Verifica se foi informado todos os digitos corretamente
     if (strlen($documento) != 11) {
         return false;
@@ -26,5 +27,4 @@ function validaCPF($documento) {
         }
     }
     return true;
-
 }

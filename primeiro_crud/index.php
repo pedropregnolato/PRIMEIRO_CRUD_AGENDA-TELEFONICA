@@ -13,7 +13,7 @@
     mysqli_select_db($mysqli, "agenda_telefonica"); //conexao com o banco
 
     if ($parametro) { //se tiver parametro (dado no pesquisar) seleciona ele, caso contrario consulta o banco todo
-        /* trigger_error("select * from contato where nome or telefone or documento like '%$parametro%' order by id"); */ 
+        /* trigger_error("select * from contato where nome or telefone or documento like '%$parametro%' order by id"); */
         $dados = mysqli_query($mysqli, "select * from contato where nome like '%$parametro%' or telefone like '%$parametro%' or documento like '%$parametro%' order by id");
     } else {
         $dados = mysqli_query($mysqli, "select * from contato order by id");
@@ -58,7 +58,7 @@
             <tr>
                 <td>ID</td>
                 <td>Nome</td>
-                <td>Documento</td>
+                <td>CPF</td>
                 <td>Telefone</td>
             </tr>
 
@@ -71,20 +71,20 @@
                         <td><?php echo $linha['id'] ?></td>
 
                         <td>
-                            <?php 
-                                echo ucwords(strtolower($linha['nome'])) 
+                            <?php
+                            echo ucwords(strtolower($linha['nome']))
                             ?>
                         </td>
 
                         <td>
-                            <?php 
-                                echo preg_replace("/([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})/", "$1.$2.$3-$4", $linha['documento']) 
+                            <?php
+                            echo preg_replace("/([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})/", "$1.$2.$3-$4", $linha['documento'])
                             ?>
                         </td>
 
                         <td>
-                            <?php 
-                                echo preg_replace("/([0-9]{2})([0-9]{5})([0-9]{4})/", "($1)$2-$3", $linha['telefone']) 
+                            <?php
+                            echo preg_replace("/([0-9]{2})([0-9]{5})([0-9]{4})/", "($1)$2-$3", $linha['telefone'])
                             ?>
                         </td>
                         <!-- UPDATE -->
