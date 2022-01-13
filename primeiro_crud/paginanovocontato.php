@@ -20,6 +20,7 @@
         <p>
         <form action="salvar.php">
             Nome: <input type="text" name="nome" required /> <br />
+            CPF: <input id="documento" type="text" name="documento" required> <br />
             Telefone <input id="telefone" type="text" name="telefone" placeholder="(__)_____-____" required /> <br />
             <input type="submit" value="adicionar" />
         </form>
@@ -30,6 +31,7 @@
 
     <script>
         $("#telefone").mask("(99)99999-9999");
+        $("#documento").mask("999.999.999-99");
     </script>
 
 </body>

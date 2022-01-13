@@ -13,12 +13,14 @@
     mysqli_select_db($mysqli, "agenda_telefonica"); //conexao com o banco
 
     if ($parametro) { //se tiver parametro (dado no pesquisar) seleciona ele, caso contrario consulta o banco todo
-        $dados = mysqli_query($mysqli, "select * from contato where nome like '$parametro%' order by id");
+        /* trigger_error("select * from contato where nome or telefone or documento like '%$parametro%' order by id"); */ 
+        $dados = mysqli_query($mysqli, "select * from contato where nome like '%$parametro%' or telefone like '%$parametro%' or documento like '%$parametro%' order by id");
     } else {
         $dados = mysqli_query($mysqli, "select * from contato order by id");
     }
 
     //modo de exibição na tela - declara a linha como uma matriz associativa e conta o numero de linhas pra passar automaticamente pro html
+    /* trigger_error(print_r($dados, true)); */
     $linha = mysqli_fetch_assoc($dados);
     $total = mysqli_num_rows($dados);
 
@@ -56,6 +58,7 @@
             <tr>
                 <td>ID</td>
                 <td>Nome</td>
+                <td>Documento</td>
                 <td>Telefone</td>
             </tr>
 
@@ -75,11 +78,17 @@
 
                         <td>
                             <?php 
+                                echo preg_replace("/([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})/", "$1.$2.$3-$4", $linha['documento']) 
+                            ?>
+                        </td>
+
+                        <td>
+                            <?php 
                                 echo preg_replace("/([0-9]{2})([0-9]{5})([0-9]{4})/", "($1)$2-$3", $linha['telefone']) 
                             ?>
                         </td>
                         <!-- UPDATE -->
-                        <td><a href="<?php echo "paginaalterar.php?id=" . $linha['id'] . "&nome=" . $linha['nome'] . "&telefone=" . $linha['telefone'] ?>"><img src="imagens/editar.png" alt="editar" width="18px"></a></td>
+                        <td><a href="<?php echo "paginaalterar.php?id=" . $linha['id'] . "&nome=" . $linha['nome'] . "&documento=" . $linha['documento'] . "&telefone=" . $linha['telefone'] ?>"><img src="imagens/editar.png" alt="editar" width="18px"></a></td>
                         <!-- DELETE -->
                         <td><a href="<?php echo "excluir.php?id=" . $linha['id'] ?>"><img src="imagens/lixeira.png" alt="lixeira" width="18px"></a></td>
                     </tr>
