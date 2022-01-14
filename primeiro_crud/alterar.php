@@ -15,13 +15,14 @@ $link = mysqli_connect("localhost", "root", "", "agenda_telefonica");
 if (!empty($nome) && !empty($documento) && !empty($telefone)) {
     if (strlen($telefone) == 11 && strlen($documento) == 11) {
         if (validaCPF($documento)) {
-            $verifica_cpf = mysqli_query($link, "select * from contato where documento = '$documento'");
+            $verifica_cpf = mysqli_query($link, "select * from contato where documento = '$documento' and id <> '$id'");
             if (mysqli_num_rows($verifica_cpf) < 1) {
                 $query = mysqli_query($link, "update contato set nome='$nome', documento='$documento', telefone='$telefone' where id='$id';");
                 if ($query) {
                     header("Location: index.php");
                 } else {
-                    die("Erro: " . mysqli_error($link));
+                    echo "Ocorreu um erro, tente novamente!";
+                    die();
                 }
             } else {
                 echo "CPF ja cadastrado!";
@@ -29,6 +30,7 @@ if (!empty($nome) && !empty($documento) && !empty($telefone)) {
             }
         } else {
             echo "digite um cpf valido!";
+            die();
         }
     }
 } else {
