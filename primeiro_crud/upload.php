@@ -14,7 +14,7 @@ session_start();
 
 <body>
     <h1>
-    Upload de imagem
+        Upload de imagem
     </h1>
 
     <?php
