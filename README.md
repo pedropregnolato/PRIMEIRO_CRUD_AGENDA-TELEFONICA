@@ -1,4 +1,3 @@
-# primeiro_crud
-Primeiro CRUD - PHP
+# CRUD PHP, HTML/CSS
 
-Minha primeira experiencia com CRUD no PHP
+Primeiro CRUD que desenvolvi por conta própria, colocando em prática tudo que venho estudando e aprendendo em  meu estágio.
